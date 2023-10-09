@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 5.0.1 (Python 3.10.10 on win32)" generated="20230927 17:52:32.192" rpa="false" schemaversion="3">
+<suite id="s1" name="API Robotframework booker" source="C:\Users\zulfa\OneDrive\Documents\Zulfa Arsip\API Robotframework booker">
+<suite id="s1-s1" name="Auth - CreateToken" source="C:\Users\zulfa\OneDrive\Documents\Zulfa Arsip\API Robotframework booker\Auth - CreateToken.robot">
+<test id="s1-s1-t1" name="Create Token Positive" line="9">
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${header}</var>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230927 17:52:32.693" level="INFO">${header} = {'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20230927 17:52:32.692" endtime="20230927 17:52:32.694"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${body}</var>
+<arg>username=${username}</arg>
+<arg>password=${password}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230927 17:52:32.696" level="INFO">${body} = {'username': 'admin', 'password': 'password123'}</msg>
+<status status="PASS" starttime="20230927 17:52:32.695" endtime="20230927 17:52:32.697"/>
+</kw>
+<kw name="POST" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${Auth}</arg>
+<arg>headers=${header}</arg>
+<arg>json=${body}</arg>
+<doc>Sends a POST request.</doc>
+<msg timestamp="20230927 17:52:34.625" level="INFO">POST Request : url=https://restful-booker.herokuapp.com/auth 
+ path_url=/auth 
+ headers={'User-Agent': 'python-requests/2.28.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '48'} 
+ body=b'{"username": "admin", "password": "password123"}' 
+ </msg>
+<msg timestamp="20230927 17:52:34.626" level="INFO">POST Response : url=https://restful-booker.herokuapp.com/auth 
+ status=200, reason=OK 
+ headers={'Server': 'Cowboy', 'Report-To': '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1695811954&amp;s=bGVoW%2BRjMHfmEyN0ku9M%2Brm79HnoAHTuwPia2VeK5mQ%3D"}]}', 'Reporting-Endpoints': 'heroku-nel=https://nel.heroku.com/reports?ts=1695811954&amp;s=bGVoW%2BRjMHfmEyN0ku9M%2Brm79HnoAHTuwPia2VeK5mQ%3D', 'Nel': '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.01,"failure_fraction":0.1,"response_headers":["Via"]}', 'Connection': 'keep-alive', 'X-Powered-By': 'Express', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '27', 'Etag': 'W/"1b-XMm0x99qMOm3Aws1TKh+aeQe3ik"', 'Date': 'Wed, 27 Sep 2023 10:52:34 GMT', 'Via': '1.1 vegur'} 
+ body={"token":"a2965c47abab596"} 
+ </msg>
+<msg timestamp="20230927 17:52:34.629" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230927 17:52:32.698" endtime="20230927 17:52:34.632"/>
+</kw>
+<kw name="Status Should Be" library="RequestsLibrary">
+<arg>200</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" starttime="20230927 17:52:34.636" endtime="20230927 17:52:34.640"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.json()}[token]</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230927 17:52:34.642" endtime="20230927 17:52:34.649"/>
+</kw>
+<status status="PASS" starttime="20230927 17:52:32.691" endtime="20230927 17:52:34.651"/>
+</test>
+<test id="s1-s1-t2" name="Create Token Negative" line="16">
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${header}</var>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230927 17:52:34.659" level="INFO">${header} = {'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20230927 17:52:34.658" endtime="20230927 17:52:34.659"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${body}</var>
+<arg>username=${username}</arg>
+<arg>password=${passwordInvalid}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230927 17:52:34.663" level="INFO">${body} = {'username': 'admin', 'password': 'password111'}</msg>
+<status status="PASS" starttime="20230927 17:52:34.661" endtime="20230927 17:52:34.664"/>
+</kw>
+<kw name="POST" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${Auth}</arg>
+<arg>headers=${header}</arg>
+<arg>json=${body}</arg>
+<doc>Sends a POST request.</doc>
+<msg timestamp="20230927 17:52:35.780" level="INFO">POST Request : url=https://restful-booker.herokuapp.com/auth 
+ path_url=/auth 
+ headers={'User-Agent': 'python-requests/2.28.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '48'} 
+ body=b'{"username": "admin", "password": "password111"}' 
+ </msg>
+<msg timestamp="20230927 17:52:35.781" level="INFO">POST Response : url=https://restful-booker.herokuapp.com/auth 
+ status=200, reason=OK 
+ headers={'Server': 'Cowboy', 'Connection': 'keep-alive', 'X-Powered-By': 'Express', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '28', 'Etag': 'W/"1c-J3EiwfZwVQjKTKvpvazUfTni8fI"', 'Date': 'Wed, 27 Sep 2023 10:52:36 GMT', 'Via': '1.1 vegur'} 
+ body={"reason":"Bad credentials"} 
+ </msg>
+<msg timestamp="20230927 17:52:35.786" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230927 17:52:34.666" endtime="20230927 17:52:35.787"/>
+</kw>
+<kw name="Status Should Be" library="RequestsLibrary">
+<arg>200</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" starttime="20230927 17:52:35.792" endtime="20230927 17:52:35.794"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.json()}[reason]</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230927 17:52:35.796" endtime="20230927 17:52:35.804"/>
+</kw>
+<kw name="Convert Json To String" library="JSONLibrary">
+<var>${respBad}</var>
+<arg>${response.json()}[reason]</arg>
+<doc>Convert JSON object to string</doc>
+<msg timestamp="20230927 17:52:35.811" level="INFO">${respBad} = "Bad credentials"</msg>
+<status status="PASS" starttime="20230927 17:52:35.806" endtime="20230927 17:52:35.811"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respBad}</arg>
+<arg>"Bad credentials"</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230927 17:52:35.813" endtime="20230927 17:52:35.815"/>
+</kw>
+<status status="PASS" starttime="20230927 17:52:34.655" endtime="20230927 17:52:35.816"/>
+</test>
+<status status="PASS" starttime="20230927 17:52:32.259" endtime="20230927 17:52:35.821"/>
+</suite>
+<status status="PASS" starttime="20230927 17:52:32.215" endtime="20230927 17:52:35.826"/>
+</suite>
+<statistics>
+<total>
+<stat pass="2" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="2" fail="0" skip="0" id="s1" name="API Robotframework booker">API Robotframework booker</stat>
+<stat pass="2" fail="0" skip="0" id="s1-s1" name="Auth - CreateToken">API Robotframework booker.Auth - CreateToken</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
