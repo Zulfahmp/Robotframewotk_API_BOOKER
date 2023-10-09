@@ -2,8 +2,7 @@
 Library     RequestsLibrary
 Library     Collections
 Library     JSONLibrary
-Resource    env.robot
-
+Resource    ../env.robot
 
 *** Test Cases ***
 Get Booking ID

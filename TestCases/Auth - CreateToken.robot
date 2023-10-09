@@ -2,7 +2,7 @@
 Library     RequestsLibrary
 Library     JSONLibrary
 Library     Collections
-Resource    env.robot
+Resource    ../env.robot
 
 
 *** Test Cases ***
