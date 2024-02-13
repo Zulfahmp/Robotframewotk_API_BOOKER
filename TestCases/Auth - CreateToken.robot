@@ -5,13 +5,14 @@ Library     Collections
 Resource    ../env.robot
 
 
-*** Test Cases ***
+*** Keywords ***
 Create Token Positive
     ${header}=    Create Dictionary    Content-Type=application/json
     ${body}=    Create Dictionary    username=${username}    password=${password}
     ${response}=    POST    ${Auth}    headers=${header}    json=${body}
     Status Should Be    200
     Log To Console    ${response.json()}[token]
+    Set Global Variable    ${token}    token=${response.json()}[token]
 
 Create Token Negative
     ${header}=    Create Dictionary    Content-Type=application/json
